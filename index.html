@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منيو تقاطع الشاي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B2C2C;
+            --primary-light: #a93c3c;
+            --secondary: #D48C45;
+            --bg-body: #f8f9fa;
+            --bg-card: #ffffff;
+            --text-main: #2b2b2b;
+            --text-muted: #888888;
+            --border-color: #eeeeee;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            padding-bottom: 50px;
+        }
+
+        .header {
+            background: #fff;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .logo-container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary);
+            padding: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: var(--primary);
+            margin-top: 15px;
+            font-size: 1.8rem;
+            font-weight: 900;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-top: 5px;
+            font-weight: 700;
+        }
+
+        .categories-nav {
+            background: var(--primary);
+            padding: 15px 10px;
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            white-space: nowrap;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .categories-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cat-link {
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .cat-link:hover, .cat-link.active {
+            background: var(--secondary);
+            color: #fff;
+        }
+
+        .menu-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            display: inline-block;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #f0f0f0;
+        }
+
+        .product-content {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .product-calories {
+            font-size: 0.85rem;
+            color: var(--secondary);
+            font-weight: 700;
+            background: #fff6ed;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            width: fit-content;
+            margin-bottom: 15px;
+        }
+
+        .product-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 15px;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .product-price span {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .info-banner {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 30px;
+            font-weight: 700;
+            line-height: 1.8;
+        }
+
+        .thermos-notes {
+            background: #e8f4f8;
+            color: #0c5460;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: 700;
+            line-height: 2;
+        }
+
+        .thermos-notes ul {
+            list-style: none;
+            padding-right: 0;
+            margin: 0;
+        }
+
+        .thermos-notes li::before {
+            content: "• ";
+            color: var(--primary);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <img src="/img/tea.png" alt="شعار تقاطع الشاي">
+        </div>
+        <h1>تقاطع الشاي</h1>
+        <p>الشاهي على أصوله</p>
+        <p>رقم الجوال للطلب والتوصيل: 0504548130</p>
+    </header>
+
+    <nav class="categories-nav">
+        <a href="#tea" class="cat-link active">الشاي</a>
+        <a href="#coffee" class="cat-link">القهوة</a>
+        <a href="#milk-drinks" class="cat-link">مشروبات بالحليب</a>
+        <a href="#food" class="cat-link">المأكولات</a>
+        <a href="#traditional" class="cat-link">مأكولات شعبية</a>
+        <a href="#others" class="cat-link">أصناف أخرى</a>
+        <a href="#thermos" class="cat-link">تعبئة الثلاجات</a>
+    </nav>
+
+    <!-- قسم الشاي -->
+    <section id="tea" class="menu-section">
+        <h2 class="section-title">☕ الشاي</h2>
+        <div class="products-grid">
+            
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=500&q=80" alt="بيالة شاي" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">بيالة شاي</h3>
+                    <div class="product-calories">5Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">3 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1596515907474-500e3da0dc4b?auto=format&fit=crop&w=500&q=80" alt="بيالة نعناع" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">بيالة نعناع طائفي</h3>
+                    <div class="product-calories">5Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">3 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1595928642581-f50f4f3453a5?auto=format&fit=crop&w=500&q=80" alt="كوب شاي ورق صغير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">كوب شاي ورق (صغير)</h3>
+                    <div class="product-calories">5Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">5 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1595928642581-f50f4f3453a5?auto=format&fit=crop&w=500&q=80" alt="كوب شاي ورق كبير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">كوب شاي ورق (كبير)</h3>
+                    <div class="product-calories">10Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">7 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?auto=format&fit=crop&w=500&q=80" alt="كوب شاي زجاج محلي" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">كوب شاي زجاج محلي (صغير)</h3>
+                    <div class="product-calories">40Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">5 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1571934811356-5cc5096538c2?auto=format&fit=crop&w=500&q=80" alt="كوب شاي زجاج سفري صغير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">كوب شاي زجاج سفري (صغير)</h3>
+                    <div class="product-calories">40Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">7 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1571934811356-5cc5096538c2?auto=format&fit=crop&w=500&q=80" alt="كوب شاي زجاج سفري كبير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">كوب شاي زجاج سفري (كبير)</h3>
+                    <div class="product-calories">60Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">9 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?auto=format&fit=crop&w=500&q=80" alt="براد شاي صغير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">براد شاي (صغير)</h3>
+                    <div class="product-calories">130Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">15 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?auto=format&fit=crop&w=500&q=80" alt="براد شاي كبير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">براد شاي (كبير)</h3>
+                    <div class="product-calories">260Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">25 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="info-banner">
+            🌿 الاضافات: ورد ، حبق ، دوش ، مرامية ، نعناع
+        </div>
+    </section>
+
+    <!-- قسم القهوة -->
+    <section id="coffee" class="menu-section">
+        <h2 class="section-title">🫘 القهوة</h2>
+        <div class="products-grid">
+            
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1557008139-4ab4889c3ab7?auto=format&fit=crop&w=500&q=80" alt="دلة قهوة صغير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">دلة قهوة سعودية مع تمر (محلي) صغير</h3>
+                    <div class="product-calories">120Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">15 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1557008139-4ab4889c3ab7?auto=format&fit=crop&w=500&q=80" alt="دلة قهوة كبير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">دلة قهوة سعودية مع تمر (محلي) كبير</h3>
+                    <div class="product-calories">20Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">20 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=500&q=80" alt="كوب قهوة ورق صغير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">كوب قهوة سعودية (ورق) صغير</h3>
+                    <div class="product-calories">5Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">5 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=500&q=80" alt="كوب قهوة ورق كبير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">كوب قهوة سعودية (ورق) كبير</h3>
+                    <div class="product-calories">10Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">7 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=500&q=80" alt="قهوة تركي صغير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">قهوة تركي صغير</h3>
+                    <div class="product-calories">20Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">8 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=500&q=80" alt="قهوة تركي كبير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">قهوة تركي كبير</h3>
+                    <div class="product-calories">35Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">10 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=500&q=80" alt="قهوة اليوم صغير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">قهوة اليوم صغير</h3>
+                    <div class="product-calories">15Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">5 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=500&q=80" alt="قهوة اليوم كبير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">قهوة اليوم كبير</h3>
+                    <div class="product-calories">25Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">7 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- قسم مشروبات بالحليب -->
+    <section id="milk-drinks" class="menu-section">
+        <h2 class="section-title">🥛 مشروبات بالحليب</h2>
+        <div class="products-grid">
+            
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=500&q=80" alt="شاي حليب صغير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">شاي حليب صغير</h3>
+                    <div class="product-calories">120Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">5 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=500&q=80" alt="شاي حليب كبير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">شاي حليب كبير</h3>
+                    <div class="product-calories">180Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">7 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1578855476059-009d7367c3ce?auto=format&fit=crop&w=500&q=80" alt="حليب كرك صغير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">حليب كرك صغير</h3>
+                    <div class="product-calories">160Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">5 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1578855476059-009d7367c3ce?auto=format&fit=crop&w=500&q=80" alt="حليب كرك كبير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">حليب كرك كبير</h3>
+                    <div class="product-calories">220Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">7 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- قسم المأكولات -->
+    <section id="food" class="menu-section">
+        <h2 class="section-title">🥪 المأكولات</h2>
+        <div class="products-grid">
+            
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1615486171448-4fdcb3cc51eb?auto=format&fit=crop&w=500&q=80" alt="جباتي سادة" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">جباتي سادة</h3>
+                    <div class="product-calories">120Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">3 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=500&q=80" alt="جباتي جبن سائل" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">جباتي جبن سائل / كرافت</h3>
+                    <div class="product-calories">180Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">4 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=500&q=80" alt="جباتي جبن تشيبس" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">جباتي جبن تشيبس</h3>
+                    <div class="product-calories">220Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">4 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=500&q=80" alt="جباتي بيض جبن" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">جباتي بيض جبن</h3>
+                    <div class="product-calories">250Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">5 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=500&q=80" alt="جباتي جبن طحينية" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">جباتي جبن طحينية</h3>
+                    <div class="product-calories">320Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">4 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1615486171448-4fdcb3cc51eb?auto=format&fit=crop&w=500&q=80" alt="جباتي جبن فول سوداني" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">جباتي جبن فول سوداني</h3>
+                    <div class="product-calories">270Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">4 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1615486171448-4fdcb3cc51eb?auto=format&fit=crop&w=500&q=80" alt="جباتي مربى فول سوداني" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">جباتي مربى فول سوداني</h3>
+                    <div class="product-calories">370Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">4 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=500&q=80" alt="توست جبن زعتر" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">توست جبن زعتر (مقمرة)</h3>
+                    <div class="product-calories">220Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">3 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f40ce88cb?auto=format&fit=crop&w=500&q=80" alt="كورسون جبن" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">كورسون جبن</h3>
+                    <div class="product-calories">250Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">5 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- قسم المأكولات الشعبية -->
+    <section id="traditional" class="menu-section">
+        <h2 class="section-title">🍯 مأكولات شعبية</h2>
+        <div class="products-grid">
+            
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1582348576483-e18d6e355c7f?auto=format&fit=crop&w=500&q=80" alt="عريكة جنوبية صغير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">عريكة جنوبية بعسل السدر والسمن البلدي (بقر او غنم) صغير</h3>
+                    <div class="product-calories">470Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">15 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1582348576483-e18d6e355c7f?auto=format&fit=crop&w=500&q=80" alt="عريكة جنوبية كبير" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">عريكة جنوبية بعسل السدر والسمن البلدي (بقر او غنم) كبير</h3>
+                    <div class="product-calories">750Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">28 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1626804475297-41609ea004eb?auto=format&fit=crop&w=500&q=80" alt="مصابيب" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">مصابيب بعسل السدر والسمن البلدي (بقر أو غنم)</h3>
+                    <div class="product-calories">550Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">15 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- قسم أصناف أخرى -->
+    <section id="others" class="menu-section">
+        <h2 class="section-title">🥜 أصناف أخرى</h2>
+        <div class="products-grid">
+            
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1599598425947-33002629ee98?auto=format&fit=crop&w=500&q=80" alt="مكسرات مدخنة" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">مكسرات مدخنة</h3>
+                    <div class="product-calories">640Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">8 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1573412586737-14251f28b248?auto=format&fit=crop&w=500&q=80" alt="مكسرات مملحة" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">مكسرات مملحة</h3>
+                    <div class="product-calories">155Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">8 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1606757530635-c3cc5b1d4bb8?auto=format&fit=crop&w=500&q=80" alt="حب دوار الشمس" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">حب دوار الشمس</h3>
+                    <div class="product-calories">580Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">4 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1616788226066-e822d140e6cd?auto=format&fit=crop&w=500&q=80" alt="حب مصري" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">حب مصري</h3>
+                    <div class="product-calories">662Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">4 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1623884393962-dcc0c1fa6e92?auto=format&fit=crop&w=500&q=80" alt="بسكويت سمسم" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">بسكويت سمسم</h3>
+                    <div class="product-calories">60Kal</div>
+                    <div class="product-footer">
+                        <div class="product-price">2 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1616118132534-381148898bb4?auto=format&fit=crop&w=500&q=80" alt="ماء نوفا" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">ماء نوفا 330مل</h3>
+                    <div class="product-footer">
+                        <div class="product-price">1 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- قسم تعبئة الثلاجات -->
+    <section id="thermos" class="menu-section">
+        <h2 class="section-title">🫖 تعبئة الثلاجات (1 لتر)</h2>
+        <div class="products-grid">
+            
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1579541243763-863a3d5b4a9a?auto=format&fit=crop&w=500&q=80" alt="قهوة مع تمر" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">قهوة مع تمر</h3>
+                    <div class="product-footer">
+                        <div class="product-price">25 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=500&q=80" alt="شاي ثلاجة" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">شاي</h3>
+                    <div class="product-footer">
+                        <div class="product-price">20 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?auto=format&fit=crop&w=500&q=80" alt="إضافة بوكس" class="product-img">
+                <div class="product-content">
+                    <h3 class="product-title">إضافة بوكس</h3>
+                    <div class="product-footer">
+                        <div class="product-price">5 <span>ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="thermos-notes">
+            <ul>
+                <li>يتوفر ثلاجات مع التأمين واسترداد التأمين</li>
+                <li>توصيل للأماكن القريبة</li>
+                <li>أي كمية أضافية يتم احتسابها</li>
+                <li>يتوفر ثلاجات شراء غير مستردة: (قهوة 40 ريال / شاهي 35 ريال)</li>
+            </ul>
+        </div>
+    </section>
+
+</body>
+</html>
